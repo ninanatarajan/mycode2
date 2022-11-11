@@ -1,0 +1,23 @@
+name: Push File
+on: 
+ workflow_dispatch: {}
+ push:
+  branches: 
+   - main
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Pushes test folder
+      uses: GuillaumeFalourd/copy-push-files@v1
+      with:
+          email: nina.nitarajan@gmail.com
+          name: ${{ github.actor }}
+          commit_message: your_message
+          target_branch: main
+          source_files: ./test
+          remote_repository: https://github.com/ninanatarajan/mycode1.git
+          access_token: ${{ secrets.ACTIONS_KEY }}
